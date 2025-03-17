@@ -123,3 +123,12 @@ Please report any software “bug” or other problems with the models through o
 ## Questions
 
 For common questions, the FAQ can be found [here](https://llama.meta.com/faq), which will be updated over time as new questions arise.
+
+## Steps to disect the llama3 model into layers for Astrasim evaluation [Sarbartha]
+
+1. Check the implementation in llama_models/llama3/reference_implementation folder
+2. The llama->Build() function composes the different components to build the llama model in generation.py
+3. Go inside the model.py and checkout the Transformer module. 
+	a. Change the n_layers=1 for adding a single attention layer.
+	b. Checkout the Attention class and modify layers to further disintegrate an attention layer.
+
