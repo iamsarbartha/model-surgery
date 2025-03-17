@@ -1,0 +1,2 @@
+export CHECKPOINT_DIR=~/.llama/checkpoints/Llama3.2-3B-Instruct
+pip install ./llama_models
