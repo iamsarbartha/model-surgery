@@ -172,7 +172,12 @@ class Llama:
             model.setup_cache(model_args.max_batch_size, torch.get_default_dtype())
         else:
             model = Transformer(model_args)
-        model.load_state_dict(checkpoint, strict=True)
+        
+        for param_tensor in model.state_dict():
+            print(param_tensor, "\t", model.state_dict()[param_tensor].size())
+            print(param_tensor, "\t", model.state_dict()[param_tensor])
+
+        model.load_state_dict(checkpoint, strict=False)
         model.to(device)
         print(f"Loaded in {time.time() - start_time:.2f} seconds")
 

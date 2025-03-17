@@ -21,7 +21,7 @@ def run_main(
     ckpt_dir: str,
     temperature: float = 0.6,
     top_p: float = 0.9,
-    max_seq_len: int = 512,
+    max_seq_len: int = 256,
     max_batch_size: int = 4,
     max_gen_len: Optional[int] = None,
     model_parallel_size: Optional[int] = None,
@@ -35,11 +35,13 @@ def run_main(
 
     `max_gen_len` is optional because finetuned models are able to stop generations naturally.
     """
+    print(f"{max_batch_size} {max_seq_len}")
     generator = Llama.build(
         ckpt_dir=ckpt_dir,
         max_seq_len=max_seq_len,
         max_batch_size=max_batch_size,
         model_parallel_size=model_parallel_size,
+        device='cuda'
     )
 
     dialogs = [
